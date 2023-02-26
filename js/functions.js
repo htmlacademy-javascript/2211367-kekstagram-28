@@ -1,27 +1,24 @@
 const validateStr = (str, maxLength) => str.length <= maxLength;
 
-const validatePolidrom = (str) => {
-  return (
-    str.replace(/\s/g, "").toLowerCase() ===
-    str.replace(/\s/g, "").toLowerCase().split("").reverse().join("")
-  );
-};
+const validatePolidrom = (str) =>
+  str.replace(/\s/g, '').toLowerCase() ===
+  str.replace(/\s/g, '').toLowerCase().split('').reverse().join('');
 const validateNumber = (value) => {
-  if (typeof value === "number") {
+  if (typeof value === 'number') {
     const val = value > 0 ? value : value * -1;
     value = String(val);
   }
   const data = value
-    .replace(/\s/g, "")
-    .split("")
+    .replace(/\s/g, '')
+    .split('')
     .map((it) => {
-      if (typeof Number(it) === "number" && !isNaN(Number(it))) {
+      if (typeof Number(it) === 'number' && !isNaN(Number(it))) {
         return it;
       } else {
-        return "";
+        return '';
       }
     })
-    .join("");
+    .join('');
   return data.length ? Number(data) : NaN;
 };
 
@@ -34,3 +31,8 @@ const copySymbol = (str, n, char) => {
     return str.substring(-diff); // обрезаем с конца, если n < str.length
   }
 };
+
+validateStr('nikita', 10);
+validatePolidrom('cocok');
+validateNumber('2023 hello');
+copySymbol('a', 3, 'qq');
