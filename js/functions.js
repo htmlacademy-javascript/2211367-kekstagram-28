@@ -36,3 +36,5 @@ validateStr('nikita', 10);
 validatePolidrom('cocok');
 validateNumber('2023 hello');
 copySymbol('a', 3, 'qq');
+
+
