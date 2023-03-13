@@ -63,4 +63,6 @@ const createUser = (id) => ({
 
 const similarUsers = Array.from(ID, createUser);
 
-console.log(similarUsers);
+export default similarUsers;
+
+
