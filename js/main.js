@@ -1,2 +1,3 @@
 import { similarUsers } from './data.js';
-similarUsers();
+import { renderThumbnails } from './miniature.js';
+renderThumbnails(similarUsers);
