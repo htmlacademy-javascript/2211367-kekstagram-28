@@ -27,6 +27,7 @@ const createElementLi = (comment, parentElement) => {
 
 let COUNT_COMMENTS = 5;
 
+
 const socialCommentTeamplate = (comments) => {
   const outerDiv = document.createElement('div');
 
@@ -52,7 +53,12 @@ const commentsLoaderMore = (comments) => () => {
   document.querySelector('.social__comment-count').remove();
   socialList.innerHTML = '';
   comments.slice(0, COUNT_COMMENTS + 5).forEach((comment) => createElementLi(comment, parentElement));
-  COUNT_COMMENTS = comments.length < COUNT_COMMENTS ? comments.length : comments.length < (COUNT_COMMENTS + 5)  ?comments.length : COUNT_COMMENTS + 5;
+
+  if (comments.length < COUNT_COMMENTS + 5) {
+    COUNT_COMMENTS = comments.length;
+  } else {
+    COUNT_COMMENTS = comments.length + 5;
+  }
 
 
   socialCommentTeamplate(comments);
