@@ -191,7 +191,7 @@ main {
   grid-gap: 10px;
 
   -ms-grid-columns: (1fr)[7];
-      grid-template-columns: repeat(7, 1fr);
+      grid-template-columns:repeat(7, 1fr);
 }
 
 .picture {
@@ -410,6 +410,7 @@ main {
   -webkit-transform: translateX(-50%);
       -ms-transform: translateX(-50%);
           transform: translateX(-50%);
+
 }
 
 .scale {
@@ -515,6 +516,22 @@ main {
 
   background-color: #ffffff;
 }
+.preview25 {
+  transform: scale(0.25)
+}
+.preview50 {
+  transform: scale(0.5)
+}
+.preview75 {
+  transform: scale(0.75)
+}
+.preview100 {
+  transform: scale(1.0)
+}
+
+.lupa-img-upload {
+  transform: scale();
+};
 
 .img-upload__preview img {
   display: block;
@@ -1185,7 +1202,7 @@ main {
   font-family: "Open Sans", "Arial", sans-serif;
   text-align: center;
   font-weight: 700;
-  font-size: 20px;
+  font-size: 20px;chrome
   color: #ffe753;
 
   background-color: #3c3614;
