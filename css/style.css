@@ -116,7 +116,6 @@ main {
   background-color: rgba(0, 0, 0, 0.8);
 }
 
-
 /* Блок с фильтрами изображений других пользователей
    ========================================================================== */
 
@@ -133,7 +132,7 @@ main {
 }
 
 .img-filters--inactive {
-  opacity: 0;
+  opacity: 100;
 }
 
 .img-filters__button {
@@ -146,7 +145,7 @@ main {
   text-transform: uppercase;
 
   cursor: pointer;
-  background-color: #232321;
+  background-color: #8b8b42;
   border: none;
 }
 

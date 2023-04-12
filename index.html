@@ -17,7 +17,7 @@
     <!-- Фильтрация изображений от других пользователей -->
     <section class="img-filters  img-filters--inactive  container">
       <h2 class="img-filters__title  visually-hidden">Фильтр фотографий</h2>
-      <form class="img-filters__form" action="https://28.javascript.pages.academy/kekstagram" method="post" enctype="multipart/form-data" autocomplete="off">
+      <form class="img-filters__form" action="https://28.javascript.pages.academy/kekstagram" method="" enctype="multipart/form-data" autocomplete="off">
         <button type=button class="img-filters__button  img-filters__button--active" id="filter-default">По
           умолчанию</button>
         <button type=button class="img-filters__button" id="filter-random">Случайные</button>
@@ -26,7 +26,7 @@
     </section>
 
     <!-- Контейнер для изображений от других пользователей -->
-    <section class="pictures  container">
+    <section class="pictures container">
       <h2 class="pictures__title  visually-hidden">Фотографии других пользователей</h2>
 
       <!-- Поле для загрузки нового изображения на сайт -->
@@ -37,7 +37,7 @@
 
             <!-- Изначальное состояние поля для загрузки изображения -->
             <fieldset class="img-upload__start">
-              <input type="file" id="upload-file" class="img-upload__input  visually-hidden" name="filename" >
+              <input type="file" id="upload-file" class="img-upload__input  visually-hidden" name="filename" accept="image/jpg, image/jpeg, image/png">
               <label for="upload-file" class="img-upload__label  img-upload__control">Загрузить</label>
             </fieldset>
 
@@ -56,7 +56,7 @@
 
                   <!-- Предварительный просмотр изображения -->
                   <div class="img-upload__preview preview25 preview50 preview75 preview100">
-                    <img src="img/upload-default-image.jpg" onclick="enlargeImg()" id="img" alt="Предварительный просмотр фотографии">
+                    <img src="img/upload-default-image.jpg" onclick="enlargeImg()" class="image-preview" id="img" width="100%" height="100%" alt="Предварительный просмотр фотографии">
                   </div>
 
                   <!-- Изменение глубины эффекта, накладываемого на изображение -->

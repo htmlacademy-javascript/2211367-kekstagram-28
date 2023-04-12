@@ -54,13 +54,11 @@ const commentsLoaderMore = (comments) => () => {
   socialList.innerHTML = '';
   comments.slice(0, COUNT_COMMENTS + 5).forEach((comment) => createElementLi(comment, parentElement));
 
-  if (comments.length < COUNT_COMMENTS + 5) {
+  if ((COUNT_COMMENTS + 5) >= comments.length) {
     COUNT_COMMENTS = comments.length;
   } else {
-    COUNT_COMMENTS = comments.length + 5;
+    COUNT_COMMENTS = COUNT_COMMENTS + 5;
   }
-
-
   socialCommentTeamplate(comments);
   if(COUNT_COMMENTS >= comments.length) {
     commentsLoader.classList.add('hidden');
@@ -97,7 +95,6 @@ const renderPictureDetails = ({ comments, description, likes, url }) => {
   document.querySelector('.big-picture__img img').src = url;
   bigPicture.querySelector('.big-picture__img').src = url;
   bigPicture.querySelector('.social__caption').textContent = description;
-
   bigPicture.querySelector('.likes-count').textContent = likes;
   const parentElement = bigPicture.querySelector('.social__comments');
 
@@ -117,7 +114,26 @@ export const showBigPictute = (picture) => {
 
   document.addEventListener('keydown',onDocumentKeyDown);
   closeModal.addEventListener('click',onClickClose);
+
   renderPictureDetails(picture);
 };
 
+const socialFooterBtn = document.querySelector('.social__footer-btn');
+const socialFooterText = document.querySelector('.social__footer-text');
+const socialComments = document.querySelector('.social__comments');
+
+socialFooterBtn.addEventListener('click', () => {
+  // socialFooterText.value ();
+  const li = document.createElement('li');
+  const img = document.createElement('img');
+  const p = document.createElement('p');
+  img.classList.add('social__picture');
+  img.src = 'img/avatar-6.svg';
+  li.classList.add('social__comment');
+  li.append(img);
+  li.append(p);
+  p.textContent = socialFooterText.value;
+  socialComments.prepend(li);
+  socialFooterText.value = '';
+});
 
