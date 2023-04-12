@@ -5,6 +5,12 @@ const thumbnailTemplate = document
   .content.querySelector('.picture');
 
 const container = document.querySelector('.pictures');
+const h2 = document.querySelector('.pictures__title');
+const imgUpload = document.querySelector('.img-upload');
+
+const imgUploadClone = imgUpload.cloneNode(true);
+const h2Clone = h2.cloneNode(true);
+
 
 const createThumbnail = (picture) => {
   const { comments, description, likes, url, id } = picture;
@@ -26,16 +32,21 @@ const createThumbnail = (picture) => {
   return thumbnail;
 };
 
-const renderThumbnails = (pictures) => {
-
+const renderThumbnails = (similarUsers) => {
+  container.querySelectorAll('.picture').forEach((element) => element.remove());
+  container.append(h2Clone);
+  container.append(imgUploadClone);
   const fragment = document.createDocumentFragment();
-  pictures.forEach((picture) => {
+  similarUsers.forEach((picture) => {
     const thumbnail = createThumbnail(picture);
     fragment.append(thumbnail);
   });
 
   container.append(fragment);
 
+
 };
 
 export { renderThumbnails };
+
+

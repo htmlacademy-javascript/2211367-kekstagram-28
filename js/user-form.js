@@ -1,9 +1,6 @@
-
-// const loadFile = document.querySelector('#upload-file');
 const loadOverlay = document.querySelector('.img-upload__overlay');
 const imgUploadCancel = document.querySelector('#upload-cancel');
 const sliderElement = document.querySelector('.effect-level__slider');
-// const effectLevelValue = document.querySelector('.effect-level__value');
 const effectsRadioChrome = document.querySelector('#effect-chrome');
 const effectsRadioSepia = document.querySelector('#effect-sepia');
 const effectsRadioMarvin = document.querySelector('#effect-marvin');
@@ -12,10 +9,9 @@ const effectsRadioHeat = document.querySelector('#effect-heat');
 const effectLevelImg = document.querySelector('.img-upload__effect-level');
 const imgPreview = document.getElementById('img');
 
+
 effectLevelImg.style.display = 'none';
 imgPreview.style.removeProperty('filter');
-
-// effectLevelValue.value = 100;
 
 noUiSlider.create(sliderElement, {
   range: {
@@ -174,18 +170,17 @@ effectsRadioHeat.addEventListener('change', (evt) => {
 
 
 export function controlUploadFile () {
-  loadOverlay.classList.remove('hidden');
+  // loadOverlay.classList.remove('hidden');
   document.body.classList.add('modal-open');
 }
 
 
-const onClickClose2 = (evt) => {
+export const onClickClose2 = (evt) => {
   evt.preventDefault ();
+  const form = document.querySelector('.img-filters__form');
+  form.reset();
   loadOverlay.classList.add('hidden');
   document.body.classList.remove('modal-open');
-  imgUploadCancel.removeEventListener('click',onClickClose2);
-  document.removeEventListener('keydown',onDocumentKeyDown2);
-
 };
 
 function onDocumentKeyDown2(evt) {
@@ -196,7 +191,6 @@ function onDocumentKeyDown2(evt) {
 }
 
 export const showLoadOverlay = () => {
-  loadOverlay.classList.remove('hidden');
   document.addEventListener('keydown', onDocumentKeyDown2);
   imgUploadCancel.addEventListener('click', onClickClose2);
 };
