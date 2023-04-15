@@ -82,9 +82,10 @@ function onDocumentKeyDown(evt) {
   if(evt.key === 'Escape') {
     evt.preventDefault ();
     bigPicture.classList.add('hidden');
+    document.removeEventListener('keydown',onDocumentKeyDown);
+    closeModal.removeEventListener('click',onClickClose);
   }
-  document.removeEventListener('keydown',onDocumentKeyDown);
-  closeModal.removeEventListener('click',onClickClose);
+
 }
 
 const renderPictureDetails = ({ comments, description, likes, url }) => {
@@ -111,29 +112,26 @@ const renderPictureDetails = ({ comments, description, likes, url }) => {
 
 export const showBigPictute = (picture) => {
   bigPicture.classList.remove('hidden');
-
   document.addEventListener('keydown',onDocumentKeyDown);
   closeModal.addEventListener('click',onClickClose);
+  const socialFooterBtn = document.querySelector('.social__footer-btn');
+  const socialFooterText = document.querySelector('.social__footer-text');
+  const socialComments = document.querySelector('.social__comments');
+  socialFooterBtn.addEventListener('click', () => {
+    const li = document.createElement('li');
+    const img = document.createElement('img');
+    const p = document.createElement('p');
+    img.classList.add('social__picture');
+    img.src = 'img/avatar-6.svg';
+    li.classList.add('social__comment');
+    li.append(img);
+    li.append(p);
+    p.textContent = socialFooterText.value;
+    socialComments.prepend(li);
+    socialFooterText.value = '';
+  });
 
   renderPictureDetails(picture);
 };
 
-const socialFooterBtn = document.querySelector('.social__footer-btn');
-const socialFooterText = document.querySelector('.social__footer-text');
-const socialComments = document.querySelector('.social__comments');
-
-socialFooterBtn.addEventListener('click', () => {
-  // socialFooterText.value ();
-  const li = document.createElement('li');
-  const img = document.createElement('img');
-  const p = document.createElement('p');
-  img.classList.add('social__picture');
-  img.src = 'img/avatar-6.svg';
-  li.classList.add('social__comment');
-  li.append(img);
-  li.append(p);
-  p.textContent = socialFooterText.value;
-  socialComments.prepend(li);
-  socialFooterText.value = '';
-});
 

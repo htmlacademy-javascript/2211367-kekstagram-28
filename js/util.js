@@ -78,7 +78,7 @@ fileInput.addEventListener('change', processLoadedImage);
 const pristine = new Pristine(loadForm, {
   classTo: 'img-upload__field-wrapper',
   errorTextParent: 'img-upload__field-wrapper',
-  errorTextClass: 'img-upload__error'
+  errorTextClass: 'img-upload__field-wrapper'
 });
 
 
@@ -86,6 +86,7 @@ const setUserFormSubmit = (onSuccess) => {
   loadForm.addEventListener('submit', async (evt) => {
     evt.preventDefault();
     const isValid = pristine.validate();
+
     if (isValid) {
       const hashtagInput = document.getElementById('textHashtags');
       if (validateHashTag(hashtagInput.value)) {
@@ -93,7 +94,8 @@ const setUserFormSubmit = (onSuccess) => {
         requestManager(formData).then(() => onSuccess(evt));
       }
     }
-  });
+  }
+  );
 };
 
 

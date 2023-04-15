@@ -34,6 +34,7 @@ const createThumbnail = (picture) => {
 
 const renderThumbnails = (similarUsers) => {
   container.querySelectorAll('.picture').forEach((element) => element.remove());
+
   container.append(h2Clone);
   container.append(imgUploadClone);
   const fragment = document.createDocumentFragment();

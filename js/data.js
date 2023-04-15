@@ -1,9 +1,9 @@
 import { getRandomArrayElement, getRandomInteger } from './util.js';
 
-const ID = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25
+const IDS = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25
 ];
 
-const URL = [
+const URLS = [
   'photos/1.jpg',
   'photos/2.jpg',
   'photos/3.jpg',
@@ -31,7 +31,7 @@ const URL = [
   'photos/25.jpg',
 ];
 
-const AVATAR_COMMENT = [
+const AVATAR_COMMENTS = [
   'img/avatar-1.svg',
   'img/avatar-2.svg',
   'img/avatar-3.svg',
@@ -40,7 +40,7 @@ const AVATAR_COMMENT = [
   'img/avatar-6.svg',
 ];
 
-const DESCRIPTION = [
+const DESCRIPTIONS = [
   'Передо мной интересная фотография',
   'Мне нравится эта фотография, потому что она точно передаёт настроение',
   'Мне нравится',
@@ -72,7 +72,7 @@ const NAMES = [
 ];
 const createComment = (value) => ({
   id: `comment-${value}`,
-  avatar: AVATAR_COMMENT[getRandomInteger(0,5)],
+  avatar: AVATAR_COMMENTS[getRandomInteger(0,5)],
   message: COMMENTS[value],
   name: NAMES[value]
 });
@@ -80,13 +80,14 @@ const comments = Array.from([0,1,2,3,4,5], createComment);
 
 const createUser = (id) => ({
   id: id,
-  url: URL[id - 1],
-  description: getRandomArrayElement(DESCRIPTION),
+  url: URLS[id - 1],
+  description: getRandomArrayElement(DESCRIPTIONS),
   likes: getRandomArrayElement(LIKES),
   comments: comments.slice(getRandomInteger(0,5)),
   name: getRandomArrayElement(NAMES),
 });
 
-const similarUsers = Array.from(ID, createUser);
+const similarUsers = Array.from(IDS, createUser);
 export { similarUsers };
 
+export const mas = [];

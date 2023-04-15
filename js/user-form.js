@@ -8,6 +8,7 @@ const effectsRadioPhobos = document.querySelector('#effect-phobos');
 const effectsRadioHeat = document.querySelector('#effect-heat');
 const effectLevelImg = document.querySelector('.img-upload__effect-level');
 const imgPreview = document.getElementById('img');
+const imgPicturePreview = document.querySelector('.img-upload__preview img');
 
 
 effectLevelImg.style.display = 'none';
@@ -170,18 +171,23 @@ effectsRadioHeat.addEventListener('change', (evt) => {
 
 
 export function controlUploadFile () {
-  // loadOverlay.classList.remove('hidden');
   document.body.classList.add('modal-open');
 }
 
+const fieldValue100 = document.querySelector('.scale__control--value');
+
+const effectsNoneDefault = document.getElementById('effect-none');
 
 export const onClickClose2 = (evt) => {
   evt.preventDefault ();
-  const form = document.querySelector('.img-filters__form');
-  form.reset();
+  imgPreview.style.removeProperty('filter');
+  imgPicturePreview.classList.add('preview100') ;
   loadOverlay.classList.add('hidden');
   document.body.classList.remove('modal-open');
+  fieldValue100.value = 100;
+  effectsNoneDefault.checked = true;
 };
+
 
 function onDocumentKeyDown2(evt) {
   if(evt.key === 'Escape') {
@@ -193,6 +199,7 @@ function onDocumentKeyDown2(evt) {
 export const showLoadOverlay = () => {
   document.addEventListener('keydown', onDocumentKeyDown2);
   imgUploadCancel.addEventListener('click', onClickClose2);
+
 };
 
 
@@ -236,6 +243,7 @@ function countFunc(count) {
   const btnMinus = count.querySelector('.scale__control--smaller');
   const field = count.querySelector('.scale__control--value');
   let fieldValue = parseFloat(field.value);
+
 
   // Добавляем клик по кнопке (-)
   btnMinus.addEventListener('click', () => {
