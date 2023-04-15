@@ -1,8 +1,6 @@
 import { ifSuccessButton } from './upload-photo.js';
-// import { processLoadedImage } from './util.js';
 
 const bodyClass = document.querySelector('body');
-
 
 const errorDiv = document
   .querySelector('#error')
@@ -27,6 +25,7 @@ export const requestManager = async (formData) => {
     bodyClass.append(successDiv);
     ifSuccessButton();
 
+
   } catch (err) {
     bodyClass.append(errorDiv);
   }
@@ -42,10 +41,10 @@ successButton.addEventListener('click', ()=> {
 }
 );
 
-const CloseButtonSuccess = (evt) => {
+const closeButtonSuccess = (evt) => {
   evt.preventDefault ();
   successDiv.classList.add('hidden');
-  successButton.removeEventListener('click',CloseButtonSuccess);
+  successButton.removeEventListener('click',closeButtonSuccess);
 
 };
 
@@ -54,13 +53,13 @@ function onCloseSuccess (evt) {
     evt.preventDefault ();
     successDiv.classList.add('hidden');
   }
-  successButton.removeEventListener('click',CloseButtonSuccess);
+  successButton.removeEventListener('click',closeButtonSuccess);
 }
 
 
 export const buttonSuccessClose = () => {
   document.addEventListener('keydown',onCloseSuccess);
-  successDiv.addEventListener('click',CloseButtonSuccess);
+  successDiv.addEventListener('click',closeButtonSuccess);
 };
 
 
@@ -70,12 +69,12 @@ const errorButton = document
   .content.querySelector('.error__button');
 
 
-const CloseButtonError = (evt) => {
+const closeButtonError = (evt) => {
   evt.preventDefault ();
   errorDiv.classList.add('hidden');
   const loadOverlay = document.querySelector('.img-upload__overlay');
   loadOverlay.classList.remove('hidden');
-  errorButton.removeEventListener('click',CloseButtonError);
+  errorButton.removeEventListener('click',closeButtonError);
 };
 
 function onCloseError (evt) {
@@ -84,12 +83,12 @@ function onCloseError (evt) {
     errorDiv.classList.add('hidden');
 
   }
-  errorButton.removeEventListener('click',CloseButtonError);
+  errorButton.removeEventListener('click',closeButtonError);
 }
 
 
 export const buttonErrorClose = () => {
   document.addEventListener('keydown',onCloseError);
-  errorDiv.addEventListener('click',CloseButtonError);
+  errorDiv.addEventListener('click',closeButtonError);
 };
 

@@ -6,8 +6,8 @@ import { onClickClose2 } from './user-form.js';
 import { buttonErrorClose } from './api.js';
 import { buttonSuccessClose } from './api.js';
 import { initFilterListeners } from './filter.js';
+import { mas } from './data.js';
 import './upload-photo.js';
-// import { showAlert, debounce } from './util.js';
 
 buttonErrorClose();
 buttonSuccessClose();
@@ -18,17 +18,12 @@ showLoadOverlay();
 fetch('https://28.javascript.pages.academy/kekstagram/data')
   .then((response) => response.json())
   .then((similarUsers) => {
-    renderThumbnails(similarUsers);
-    initFilterListeners(similarUsers);
+    similarUsers.forEach((item) => {
+      mas.push(item);
+    });
+    renderThumbnails(mas);
+    initFilterListeners(mas);
   });
 
-// const RENDER_PHOTOS_DELAY = 500;
-// try {
-//   const data = await getData();
-//   renderThumbnails(data);
-//   initFilterListeners(data, debounce(renderThumbnails, RENDER_PHOTOS_DELAY));
-// } catch (err) {
-//   showAlert(err.message);
-// }
 setUserFormSubmit(onClickClose2);
 
