@@ -12,7 +12,12 @@ const successDiv = document
 
 
 export const requestManager = async (formData) => {
+
   try {
+    const isValid = ifSuccessButton();
+    if(!isValid) {
+      throw new Error();
+    }
     const response = await fetch('https://28.javascript.pages.academy/kekstagram',
       {
         method: 'POST',
@@ -23,10 +28,13 @@ export const requestManager = async (formData) => {
       throw new Error();
     }
     bodyClass.append(successDiv);
-    ifSuccessButton();
+
+    const fileInput = document.getElementById('upload-file');
+    fileInput.value = '';
 
 
   } catch (err) {
+    errorDiv.classList.remove('hidden');
     bodyClass.append(errorDiv);
   }
 };
@@ -37,9 +45,9 @@ export const successButton = document
   .content.querySelector('.success__button');
 
 successButton.addEventListener('click', ()=> {
-
 }
 );
+
 
 const closeButtonSuccess = (evt) => {
   evt.preventDefault ();

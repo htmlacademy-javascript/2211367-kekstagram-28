@@ -78,7 +78,7 @@ const createComment = (value) => ({
 });
 const comments = Array.from([0,1,2,3,4,5], createComment);
 
-const createUser = (id) => ({
+export const createUser = (id) => ({
   id: id,
   url: URLS[id - 1],
   description: getRandomArrayElement(DESCRIPTIONS),

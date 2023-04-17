@@ -1,15 +1,25 @@
 const FILE_TYPES = ['jpg', 'jpeg', 'png'];
-
+let saveFile = null;
 const uploadFileElement = document.querySelector('.img-upload__input[type=file]');
-const imgDefaultElement = document.querySelector('.img-upload__preview img');
 
 export const ifSuccessButton = () => {
-  const file = uploadFileElement.files[0];
-  const fileName = file.name.toLowerCase();
-  const matches = FILE_TYPES.some((it) => fileName.endsWith(it));
-  if (matches) {
-    imgDefaultElement.src = URL.createObjectURL(file);
-    document.querySelector('.pictures').prepend(imgDefaultElement);
+  let isValid = true;
+  let file = null;
+  if (uploadFileElement?.files[0]) {
+    file = uploadFileElement.files[0];
+  } else {
+    file = saveFile;
   }
+  const fileName = file?.name?.toLowerCase();
+  if (fileName && file) {
+    saveFile = file;
+    const matches = FILE_TYPES.some((it) => fileName.endsWith(it));
+    if (!matches) {
+      isValid = false;
+    }
+  } else {
+    isValid = false;
+  }
+  return isValid;
 };
 

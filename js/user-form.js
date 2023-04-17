@@ -10,7 +10,6 @@ const effectLevelImg = document.querySelector('.img-upload__effect-level');
 const imgPreview = document.getElementById('img');
 const imgPicturePreview = document.querySelector('.img-upload__preview img');
 
-
 effectLevelImg.style.display = 'none';
 imgPreview.style.removeProperty('filter');
 
@@ -44,7 +43,6 @@ function updateFilterHeat(value) {
 
 // Подписываемся на событие update слайдера и обновляем CSS-свойство filter
 sliderElement.noUiSlider.on('update', (values) => {
-
   const currentValue = parseFloat(values[0]);
 
   if (effectsRadioChrome.checked) {
@@ -177,15 +175,23 @@ export function controlUploadFile () {
 const fieldValue100 = document.querySelector('.scale__control--value');
 
 const effectsNoneDefault = document.getElementById('effect-none');
+const textComments = document.getElementById('textComments');
+const textHashtags = document.getElementById('textHashtags');
 
 export const onClickClose2 = (evt) => {
   evt.preventDefault ();
+  const fileInput = document.getElementById('upload-file');
+  fileInput.value = '';
+  textHashtags.value = '';
+  textComments.value = '';
   imgPreview.style.removeProperty('filter');
   imgPicturePreview.classList.add('preview100') ;
   loadOverlay.classList.add('hidden');
   document.body.classList.remove('modal-open');
   fieldValue100.value = 100;
   effectsNoneDefault.checked = true;
+  const effectLevelImg1 = document.querySelector('.img-upload__effect-level');
+  effectLevelImg1.style.display = 'none';
 };
 
 
@@ -203,8 +209,6 @@ export const showLoadOverlay = () => {
 };
 
 
-// Удаляем Esc при фокусе у "Ваш комментариий"
-const textComments = document.getElementById('textComments');
 // Добавляем обработчик событий keydown
 textComments.addEventListener('keydown', (evt) => {
   // Проверяем, нажата ли клавиша Esc
@@ -219,8 +223,6 @@ textComments.addEventListener('keydown', (evt) => {
     }
   }
 });
-// Удаляем Esc у Хэштэгов
-const textHashtags = document.getElementById('textHashtags');
 // Добавляем обработчик событий keydown
 textHashtags.addEventListener('keydown', (evt) => {
   // Проверяем, нажата ли клавиша Esc
@@ -304,6 +306,7 @@ const effectNone = document.getElementById('effect-none');
 
 if (effectNone.checked) {
   imgPreview.style.removeProperty('filter');
+
 }
 const remove = () => {
   imgPreview.style.removeProperty('filter');
