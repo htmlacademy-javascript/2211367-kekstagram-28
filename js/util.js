@@ -61,14 +61,27 @@ export const validateHashTag = (tagsToValidate)=> {
 
 const loadForm = document.querySelector('.img-upload__form');
 const loadOverlay = document.querySelector('.img-upload__overlay');
+const loadDiv = document.querySelector('.img-upload__preview');
+let imageD = null;
+let flag = false;
+
+
 const processLoadedImage = (evt) => {
   const fileUrl = URL.createObjectURL(evt.target.files[0]);
   const imagePreview = loadOverlay.getElementsByClassName('image-preview')[0];
+  const image = document.createElement('img');
+  image.src = fileUrl;
 
-  imagePreview.src = fileUrl;
+  if (!flag) {
+    imageD = imagePreview;
+    imagePreview.src = fileUrl;
+    flag = true;
+  } else {
+    imageD.src = fileUrl;
+    loadDiv.append(imageD);
+  }
   loadOverlay.classList.remove('hidden');
   URL.revokeObjectURL(evt.target.files[0]);
-
 };
 const fileInput = document.getElementById('upload-file');
 fileInput.addEventListener('change', processLoadedImage);
@@ -86,10 +99,10 @@ const setUserFormSubmit = (onSuccess) => {
   loadForm.addEventListener('submit', async (evt) => {
     evt.preventDefault();
     const isValid = pristine.validate();
-
     if (isValid) {
       const hashtagInput = document.getElementById('textHashtags');
       if (validateHashTag(hashtagInput.value)) {
+
         const formData = new FormData(evt.target);
         requestManager(formData).then(() => onSuccess(evt));
       }
@@ -97,7 +110,6 @@ const setUserFormSubmit = (onSuccess) => {
   }
   );
 };
-
 
 export { setUserFormSubmit };
 export { getRandomArrayElement, getRandomInteger };
